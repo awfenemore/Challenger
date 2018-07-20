@@ -5,7 +5,9 @@
 
     <div id="horizontalBar" class="border-top">
     <!-- Logo for site,login and user details, then buttons for routing --->
-
+      <a id="loginButton" href="/login" class="button loginButton">Login</a>
+      <a id="logoutButton" href="/logout" class="button">Logout</a>
+      <a id="registerButton" href="/register" class="button">Register</a>
     </div>
 
     <div id="verticalBar" class="border-right">
@@ -24,17 +26,65 @@
       <a id="manageAccount" href="/users/myaccount">My Account</a>
     </div>
 
+    <div>
+      <ul id="menuBar">
+        <li><a id="menuCurrent" class="active" href="/challenges/current" onclick="setActive('curr')">Current Challenges</a></li>
+        <li><a id="menuPrevious" href="/challenges/previous" onclick="setActive('prev')">Previous Challenges</a></li>
+        <li><a id="menuFuture" href="/challenges/future" onclick="setActive('fut')">Future Challenges</a></li>
+        <li><a id="menuAbout" href="/about" onclick="setActive('about')">About</a></li>
+        <li><a id="menuContact" href="/contact" onclick="setActive('contact')">Contact</a></li>
+      </ul>
+    </div>
+
     <router-view/>
   </div>
 </template>
 
 
 
+
+
+
 <script>
 export default {
-  name: 'App'
+  name: 'App',
+
+  data() {
+  },
+
+  mounted: function() {
+    this.setActive(window.location.pathname);
+  },
+
+  methods: {
+
+    setActive: function (activeItem) {
+      //Sets the designated menu item to active and the rest to inactive
+      document.getElementById("menuCurrent").className = "";
+      document.getElementById("menuPrevious").className = "";
+      document.getElementById("menuFuture").className = "";
+      document.getElementById("menuAbout").className = "";
+      document.getElementById("menuContact").className = "";
+
+      switch (activeItem) {
+        case "/challenges/current": document.getElementById("menuCurrent").className = "active"; break;
+        case "/challenges/previous": document.getElementById("menuPrevious").className = "active"; break;
+        case "/challenges/future": document.getElementById("menuFuture").className = "active"; break;
+        case "/about": document.getElementById("menuAbout").className = "active"; break;
+        case "/contact": document.getElementById("menuContact").className = "active"; break;
+      }
+    }
+
+
+  }
 }
 </script>
+
+
+
+
+
+
 
 <style>
   /* Borders on top and right hand side */
@@ -55,6 +105,65 @@ export default {
     margin-top: -20px;
     margin-bottom: 20px;
   }
+
+
+  /* Buttons for login logout and register */
+  #loginButton {
+    font-family: "Segoe UI";
+    font-weight: bold;
+    color: white;
+    position: absolute;
+    right: 18%;
+    top: 10%;
+    text-align: center;
+    text-decoration: none;
+    background-color: #333;
+    padding: 8px 20px;
+    border: 1px solid white;
+    border-radius: 3px;
+    width: 60px;
+  }
+  #loginButton:hover {
+    background-color: #111;
+  }
+  #logoutButton {
+    font-family: "Segoe UI";
+    font-weight: bold;
+    color: white;
+    position: absolute;
+    right: 18%;
+    top: 35%;
+    text-align: center;
+    text-decoration: none;
+    background-color: #333;
+    padding: 8px 20px;
+    border: 1px solid white;
+    border-radius: 3px;
+    width: 60px;
+  }
+  #logoutButton:hover {
+    background-color: #111;
+  }
+  #registerButton {
+    font-family: "Segoe UI";
+    font-weight: bold;
+    color: white;
+    position: absolute;
+    right: 18%;
+    top: 60%;
+    text-align: center;
+    text-decoration: none;
+    background-color: #333;
+    padding: 8px 20px;
+    border: 1px solid white;
+    border-radius: 3px;
+    width: 60px;
+  }
+  #registerButton:hover {
+    background-color: #111;
+  }
+
+
 
 
   /* User information box */
@@ -125,4 +234,42 @@ export default {
     left: 2%;
     top: 70%;
   }
+
+
+  /* Menu horizontal navigation bar */
+  #menuBar {
+    font-family: "Segoe UI";
+    font-weight: bold;
+    position: absolute;
+    top: 21%;
+    left: 0%;
+    right: 13.15%;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+    list-style-type: none;
+    margin: 0;
+    border-top: 1px solid white;
+    border-right: 1px solid white;
+    border-bottom: 1px solid white;
+  }
+  li {
+    float: left;
+    display: inline;
+  }
+  li a {
+    text-align: center;
+    display: block;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+  }
+  li a:hover:not(.active) {
+    background-color: #111;
+  }
+
+  .active {
+    background-color: #293b59;
+  }
+
 </style>
