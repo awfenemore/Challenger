@@ -1,5 +1,27 @@
 <!-- On all pages --->
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Stylesheets in to separate files, a links into router links --->
+
+
+
+
+
+
 <template>
   <div id="app">
 
@@ -8,22 +30,23 @@
       <a id="loginButton" href="/login" class="button loginButton">Login</a>
       <a id="logoutButton" href="/logout" class="button">Logout</a>
       <a id="registerButton" href="/register" class="button">Register</a>
+
+      <div id="userInfoBox" class="hl">
+        <h1 id="username">UserName</h1>                                                     <!-- TO CHANGE     {{this.currentUser.username}} --->
+        <img id="profilePic" src="./assets/logo.png">                                     <!-- :src=this.currentUser.profilePic --->
+        <img id="goldTrophy" src="./assets/GoldCup2.png">
+        <div id="numGolds">{{2}}</div>                                                     <!-- {{this.currentUser.numGolds}} -->
+        <img id="bronzeTrophy" src="./assets/BronzeCup2.png">
+        <div id="numBronzes">{{0}}</div>                                                   <!-- {{this.currentUser.numBronzes}} -->
+        <a id="currentUserChallengers" href="/users/currentChallengers">My Current Challengers</a>
+        <a id="manageAccount" href="/users/myaccount">My Account</a>
+      </div>
+
     </div>
 
     <div id="verticalBar" class="border-right">
     <!-- Advertising --->
 
-    </div>
-
-    <div id="userInfoBox" class="hl">
-      <h1 id="username">UserName</h1>                                                     <!-- TO CHANGE     {{this.currentUser.username}} --->
-      <img id="profilePic" src="./assets/logo.png">                                     <!-- :src=this.currentUser.profilePic --->
-      <img id="goldTrophy" src="./assets/GoldCup2.png">
-      <div id="numGolds">{{2}}</div>                                                     <!-- {{this.currentUser.numGolds}} -->
-      <img id="bronzeTrophy" src="./assets/BronzeCup2.png">
-      <div id="numBronzes">{{0}}</div>                                                   <!-- {{this.currentUser.numBronzes}} -->
-      <a id="currentUserChallengers" href="/users/currentChallengers">Current Challengers</a>
-      <a id="manageAccount" href="/users/myaccount">My Account</a>
     </div>
 
     <div>
@@ -36,7 +59,9 @@
       </ul>
     </div>
 
-    <router-view/>
+    <div id="content">
+      <router-view> </router-view>
+    </div>
   </div>
 </template>
 
@@ -82,10 +107,6 @@ export default {
 
 
 
-
-
-
-
 <style>
   /* Borders on top and right hand side */
   #horizontalBar {
@@ -93,7 +114,7 @@ export default {
     height: 200px;
     width: 100%;
     position: absolute;
-    top: 0%;
+    top: 0;
     margin-left: -20px;
   }
   #verticalBar {
@@ -101,9 +122,10 @@ export default {
     height: 100%;
     width: 250px;
     position: absolute;
-    right: 0%;
-    margin-top: -20px;
-    margin-bottom: 20px;
+    right: 0;
+    margin-top: -25px;
+    margin-bottom: 10px;
+    z-index: -1;
   }
 
 
@@ -113,7 +135,7 @@ export default {
     font-weight: bold;
     color: white;
     position: absolute;
-    right: 18%;
+    right: 330px;
     top: 10%;
     text-align: center;
     text-decoration: none;
@@ -131,7 +153,7 @@ export default {
     font-weight: bold;
     color: white;
     position: absolute;
-    right: 18%;
+    right: 330px;
     top: 35%;
     text-align: center;
     text-decoration: none;
@@ -149,7 +171,7 @@ export default {
     font-weight: bold;
     color: white;
     position: absolute;
-    right: 18%;
+    right: 330px;
     top: 60%;
     text-align: center;
     text-decoration: none;
@@ -172,6 +194,7 @@ export default {
     width: 300px;
     position: absolute;
     right: 1%;
+    top: 5%;
   }
   #username {
     font-family: "Segoe UI";
@@ -241,9 +264,9 @@ export default {
     font-family: "Segoe UI";
     font-weight: bold;
     position: absolute;
-    top: 21%;
+    top: 180px;
     left: 0%;
-    right: 13.15%;
+    right: 250px;
     padding: 0;
     overflow: hidden;
     background-color: #333;
@@ -270,6 +293,12 @@ export default {
 
   .active {
     background-color: #293b59;
+  }
+
+  #content {
+    padding-right: 243px;
+    padding-top: 210px;
+    margin-left: -10px;
   }
 
 </style>
