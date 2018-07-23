@@ -1,7 +1,7 @@
 <template>
 <div id="about">
-  <h1>heeelllo5555555555555555 555555555555555555 55555555555555 55555555555 555555555555555 5555555555555 55555555555555 555555 5555555</h1><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-  {{'penis'}}
+  <h1>About Challenger</h1>
+  {{this.about}}
 </div>
 
 
@@ -16,8 +16,27 @@
 
 
 <script>
-    export default {
-        name: "About"
+  export default {
+        name: "About",
+      data() {
+          return {
+            about: ""
+          }
+      },
+      methods: {
+          readAboutDetails: function () {
+            alert('calling');
+            this.$http.get('http://localhost:4941/api/v1/about')
+              .then(function (response) {
+                alert('inside');
+                this.about = response.data;
+                alert(this.about);
+              });
+          }
+      },
+      mounted: function () {
+        this.readAboutDetails();
+      }
     }
 </script>
 
@@ -27,7 +46,8 @@
 
 <style scoped>
   #about {
-    background-color: dimgrey;
-   border: 5px solid dimgrey;
+    background-color: darkgrey;
+    border: 5px solid darkgrey;
+    font-family: "Segoe UI";
   }
 </style>
