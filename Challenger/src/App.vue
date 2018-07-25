@@ -4,17 +4,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 <!-- Stylesheets in to separate files, a links into router links --->
 
 
@@ -25,7 +14,7 @@
 <template>
   <div id="app">
 
-    <div id="horizontalBar" class="border-top">
+    <div id="horizontalTopBar" class="border-top">
     <!-- Logo for site,login and user details, then buttons for routing --->
       <a id="loginButton" href="/login" class="button loginButton">Login</a>
       <a id="logoutButton" href="/logout" class="button">Logout</a>
@@ -49,6 +38,8 @@
 
     </div>
 
+
+
     <div>
       <ul id="menuBar">
         <li><a id="menuCurrent" class="active" href="/challenges/current" onclick="setActive('curr')">Current Challenges</a></li>
@@ -62,6 +53,7 @@
     <div id="content">
       <router-view> </router-view>
     </div>
+
   </div>
 </template>
 
@@ -109,7 +101,7 @@ export default {
 
 <style>
   /* Borders on top and right hand side */
-  #horizontalBar {
+  #horizontalTopBar {
     background-color: #293b59;
     height: 200px;
     width: 100%;
@@ -119,9 +111,10 @@ export default {
   }
   #verticalBar {
     background-color: #293b59;
-    height: 100%;
+    top: 0;
+    bottom: -10px;
     width: 250px;
-    position: absolute;
+    position: fixed;
     right: 0;
     margin-top: -25px;
     margin-bottom: 10px;
@@ -299,6 +292,7 @@ export default {
     padding-right: 243px;
     padding-top: 210px;
     margin-left: -10px;
+    padding-bottom: 10px;
   }
 
 </style>
